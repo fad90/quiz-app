@@ -8,7 +8,7 @@ const quizData = [
         correct: "c",
     },
     {
-        question: "What's the Biggest Animal in the World?",
+        question: "What's the biggest animal in the world?",
         a: "Blue Whale",
         b: "Colossal Squid",
         c: "African Elephant",
@@ -40,7 +40,7 @@ const quizData = [
         d: "Chinese",
         correct: "d",
     },
-]; 
+];
 
 const quiz = document.getElementById("quiz");
 const answerEls = document.querySelectorAll(".answer");
@@ -49,4 +49,32 @@ const a_text = document.getElementById("a_text");
 const b_text = document.getElementById("b_text");
 const c_text = document.getElementById("c_text");
 const d_text = document.getElementById("d_text");
-const submitBtn = document.getElementById("sibmit");
+const submitBtn = document.getElementById("submit");
+
+let currentQuiz = 0;
+
+loadQuiz();
+
+function loadQuiz() {
+    const currentQuizData = quizData[currentQuiz];
+
+    questionEl.innerText = currentQuizData.question;
+    a_text.innerText = currentQuizData.a;
+    b_text.innerText = currentQuizData.b;
+    c_text.innerText = currentQuizData.c;
+    d_text.innerText = currentQuizData.d;
+
+}
+
+
+submitBtn.addEventListener("click", () => {
+    currentQuiz++;
+
+    if(currentQuiz < quizData.length) {
+        loadQuiz();
+    } else {
+        //TODO: SHOW RESULTS
+        alert("You are successfully finished this quiz");
+    }
+    
+});
